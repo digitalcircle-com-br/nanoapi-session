@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/digitalcircle-com-br/nanoapi"
+	. "github.com/digitalcircle-com-br/nanoapi-log"
 )
 
 type Session struct {
@@ -20,7 +21,6 @@ var SessionLoad func(c context.Context, id string) (*Session, error)
 var SessionExist func(c context.Context, id string) (bool, error)
 var SessionDel func(c context.Context, id string) error
 
-
 //CtxSessionID - gets session id from req cookie.
 func CtxSessionID(c context.Context) string {
 	f := nanoapi.CtxReq(c)
@@ -34,6 +34,7 @@ func CtxSessionID(c context.Context) string {
 
 	return ck.Value
 }
+
 //CtxSessionExist - checks if session exists.
 func CtxSessionExist(c context.Context) bool {
 	id := CtxSessionID(c)
@@ -42,7 +43,7 @@ func CtxSessionExist(c context.Context) bool {
 	}
 	ret, err := SessionExist(c, id)
 	if err != nil {
-		nanoapi.Err("CtxSessionExist::error %s", err.Error())
+		Err("CtxSessionExist::error %s", err.Error())
 		return false
 	}
 	return ret
@@ -56,7 +57,7 @@ func CtxSession(c context.Context) *Session {
 	}
 	ret, err := SessionLoad(c, id)
 	if err != nil {
-		nanoapi.Err("CtxSession::error %s", err.Error())
+		Err("CtxSession::error %s", err.Error())
 		return nil
 	}
 	return ret

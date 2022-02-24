@@ -3,6 +3,8 @@ github.com/digitalcircle-com-br/envfile v0.0.0-20220116020901-2f768c481326 h1:OC
 github.com/digitalcircle-com-br/envfile v0.0.0-20220116020901-2f768c481326/go.mod h1:LeQG2LR8fbDO35iqva7dGIynlJWiiArgQFuBogOEL+w=
 github.com/digitalcircle-com-br/nanoapi v0.0.0-20220223081831-11f1227c7599 h1:Cj6G65sfXEVCQbLBrcRkQ2/qLakhptGLiBBqXxM6K+A=
 github.com/digitalcircle-com-br/nanoapi v0.0.0-20220223081831-11f1227c7599/go.mod h1:m/y5lbIswTS9TtTJSR7sf1gZI94C2McmFJ2SkkPesFs=
+github.com/digitalcircle-com-br/nanoapi-log v0.0.0-20220224130132-94439051408f h1:V8BrTA81KnNeWOyVkkHAfIyv8wGO7NXuRGdNYCZk3GA=
+github.com/digitalcircle-com-br/nanoapi-log v0.0.0-20220224130132-94439051408f/go.mod h1:s+MrljYu1CbShGZABEJ2OOP87hAOFrLCYSsSMtWW+BQ=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
 github.com/kr/text v0.2.0/go.mod h1:eLer722TekiGuMkidMxC/pM04lWEeraHUUmBw8l2grE=
