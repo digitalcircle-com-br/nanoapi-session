@@ -27,6 +27,10 @@ func CtxSessionID(c context.Context) string {
 	if f == nil {
 		return ""
 	}
+	v := f.Header.Get("X-SESSION")
+	if v != "" {
+		return v
+	}
 	ck, err := f.Cookie("SESSION")
 	if err != nil {
 		return ""
@@ -101,6 +105,18 @@ func Setup() error {
 
 	SessionSave = func(c context.Context, s Session) error {
 		return nil
+	}
+
+	nanoapi.CheckPerm = func(ctx context.Context, p string) bool {
+		s := CtxSession(ctx)
+		if s == nil {
+			return false
+		}
+		if p == nanoapi.PERM_AUTH {
+			return true
+		}
+		_, ok := s.Perms[p]
+		return ok
 	}
 
 	return nil
