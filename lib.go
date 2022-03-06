@@ -35,11 +35,16 @@ func CtxSessionID(c context.Context) string {
 		return v
 	}
 	ck, err := f.Cookie("SESSION")
-	if err != nil {
-		return ""
-	}
 
-	return ck.Value
+	if err == nil {
+		if ck.Value != "" {
+			return ck.Value
+		}
+	}
+	if f.URL.Query().Get("session") != "" {
+		return f.URL.Query().Get("session")
+	}
+	return ""
 }
 
 //CtxSessionExist - checks if session exists.
