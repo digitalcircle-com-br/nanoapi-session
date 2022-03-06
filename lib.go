@@ -2,6 +2,7 @@ package nanoapisession
 
 import (
 	"context"
+	"errors"
 	"net/http"
 
 	"github.com/digitalcircle-com-br/nanoapi"
@@ -20,6 +21,8 @@ var SessionSave func(c context.Context, s Session) error
 var SessionLoad func(c context.Context, id string) (*Session, error)
 var SessionExist func(c context.Context, id string) (bool, error)
 var SessionDel func(c context.Context, id string) error
+
+var ErrSessionNotFound = errors.New("session not found")
 
 //CtxSessionID - gets session id from req cookie.
 func CtxSessionID(c context.Context) string {
@@ -65,6 +68,20 @@ func CtxSession(c context.Context) *Session {
 		return nil
 	}
 	return ret
+}
+
+//CtxMustSession - gets session and returns ErrSessionNotFound if something goes wrong.
+func CtxMustSession(c context.Context) (*Session, error) {
+	id := CtxSessionID(c)
+	if id == "" {
+		return nil, ErrSessionNotFound
+	}
+	ret, err := SessionLoad(c, id)
+	if err != nil {
+		Err("CtxSession::error %s", err.Error())
+		return nil, ErrSessionNotFound
+	}
+	return ret, nil
 }
 
 //CtxSession - gets all session data from cache.
